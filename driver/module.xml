@@ -2,7 +2,7 @@
 
 <module xmlns="urn:jboss:module:1.0" name="com.oracle.jdbc.driver">
     <resources>
-        <resource-root path="ojdbc6.jar"/>
+        <resource-root path="ojdbc10.jar"/>
     </resources>
 
     <dependencies>

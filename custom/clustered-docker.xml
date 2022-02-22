@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <server xmlns="urn:jboss:domain:4.0">
-  <extensions>
+  <!-- <extensions>
     <extension module="org.infinispan.extension"/>
     <extension module="org.infinispan.server.endpoint"/>
     <extension module="org.jboss.as.connector"/>
@@ -14,7 +14,7 @@
     <extension module="org.jboss.as.transactions"/>
     <extension module="org.jgroups.extension"/>
     <extension module="org.wildfly.extension.io"/>
-  </extensions>
+  </extensions> -->
   <management>
     <security-realms>
       <security-realm name="ManagementRealm">
