@@ -6,3 +6,4 @@ Download the Oracle JDBC driver from http://www.oracle.com/technetwork/apps-tech
 To start the servers run
 
 ```docker-composer up -d``` 
+# infinispan-docker
