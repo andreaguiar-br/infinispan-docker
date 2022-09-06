@@ -10,10 +10,7 @@ services:
     container_name: infinispan_1
     image: quay.io/infinispan/server:13.0
     restart: always
-    # command: custom/clustered-docker
-    # command: /my-config/clustered-docker
-    # depends_on:
-      # - oracle
+    user: root:root
     environment:
       - IDENTITIES_BATCH="/user-config/identities.batch"
     ports:
@@ -24,7 +21,8 @@ services:
       - $PWD/custom:/my-config/
       # - $PWD/custom:/opt/jboss/infinispan-server/standalone/configuration/custom
       - $PWD/user-config:/user-config/
-      # - vol-infinispan_1:/opt/infinispan/server/data
+      - $PWD/user-config/my-infinispan-config.xml:/opt/infinispan/server/conf/infinispan.xml
+      - vol-infinispan_1:/opt/infinispan/server/data
   infinispan-2:
     hostname: infinispan_2
     container_name: infinispan_2
@@ -34,6 +32,7 @@ services:
     # command: /my-config/clustered-docker
     # depends_on:
       # - oracle
+    user: root:root
     environment:
       - IDENTITIES_BATCH="/user-config/identities.batch"
     ports:
@@ -43,17 +42,15 @@ services:
       # - $PWD/driver:/opt/jboss/infinispan-server/modules/com/oracle/jdbc/driver/main/
       - $PWD/custom:/my-config/
       # - $PWD/custom:/opt/jboss/infinispan-server/standalone/configuration/custom
+      - $PWD/user-config/my-infinispan-config.xml:/opt/infinispan/server/conf/infinispan.xml
       - $PWD/user-config:/user-config/
-      # - vol-infinispan_2:/opt/infinispan/server/data
+      - vol-infinispan_2:/opt/infinispan/server/data
   infinispan-3:
     hostname: infinispan_3
     container_name: infinispan_3
     image: quay.io/infinispan/server:13.0
+    user: root:root
     restart: always
-    # command: custom/clustered-docker
-    # command: /my-config/clustered-docker
-    # depends_on:
-      # - oracle
     environment:
       - IDENTITIES_BATCH="/user-config/identities.batch"
     ports:
@@ -62,15 +59,15 @@ services:
       - $PWD/driver:/opt/infinispan/server/lib/
       - $PWD/custom:/my-config/
       # - $PWD/custom:/opt/jboss/infinispan-server/standalone/configuration/custom
+      - $PWD/user-config/my-infinispan-config.xml:/opt/infinispan/server/conf/infinispan.xml
       - $PWD/user-config:/user-config/
-      # - vol-infinispan_3:/opt/infinispan/server/data
-      # - $PWD/data:/opt/infinispan/server/data
+      - vol-infinispan_3:/opt/infinispan/server/data
 
 networks:
   default:
     driver: bridge
 
-# volumes:
-#   vol-infinispan_1:
-#   vol-infinispan_2:
-#   vol-infinispan_3:
+volumes:
+  vol-infinispan_1:
+  vol-infinispan_2:
+  vol-infinispan_3:
